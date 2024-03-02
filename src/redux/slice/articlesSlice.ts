@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import AxiosHelper from "../api/AxiosHelper";
-import Article from "../interfaces/Article";
+import AxiosHelper from "../../api/AxiosHelper";
+import Article from "../../interfaces/Article";
 
 export const getArticlesThunk = createAsyncThunk(
     '/articles',
@@ -41,7 +41,7 @@ const articlesSlice = createSlice({
             })
             .addCase(getArticlesThunk.rejected, (state, action) => {
                 return {
-                    ...state,
+                    ...initialState,
                     errorMessage: action.error.message ?? "Something went wrong",
                     isLoading: false,
                 }

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { AppDispatch, RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { getArticleDetailThunk, resetArticleDetails } from '../../redux/articlesDetailSlice';
+import { getArticleDetailThunk, resetArticleDetails } from '../../redux/slice/articlesDetailSlice';
 import Shimmer from '../components/Shimmer';
 import ErrorComponent from '../components/ErrorComponent';
 

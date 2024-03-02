@@ -2,7 +2,7 @@ import ArticleRow from "../components/ArticleRow"
 import { AppDispatch, RootState } from "../../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { getArticlesThunk } from "../../redux/articlesSlice"
+import { getArticlesThunk } from "../../redux/slice/articlesSlice"
 import ErrorComponent from "../components/ErrorComponent"
 import Shimmer from "../components/Shimmer"
 
