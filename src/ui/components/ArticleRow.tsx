@@ -14,6 +14,7 @@ const ArticleRow = ({ article, seqNum }: Props) => {
     const onRowClick = () => {
         navigate(`/article/${article.id}/${toSlug(article.title)}`)
     }
+    
     return (
         article && <div className="border-bottom border-light py-4 pointer" onClick={onRowClick}>
             <p className="fs-4 text-dark mb-1 fw-medium" >{articleSeq(seqNum)}</p>

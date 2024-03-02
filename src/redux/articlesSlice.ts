@@ -3,9 +3,10 @@ import AxiosHelper from "../api/AxiosHelper";
 import Article from "../interfaces/Article";
 
 export const getArticlesThunk = createAsyncThunk(
-    '/artcles',
+    '/articles',
     async (_, thunkApi) => {
-        return await AxiosHelper.httpGet({ path: 'articles' })
+        return await AxiosHelper
+        .httpGet({ path: 'articles' }) 
     }
 )
 
@@ -35,13 +36,14 @@ const articlesSlice = createSlice({
                     ...initialState,
                     isLoading: false,
                     errorMessage: '',
-                    data: action.payload as Article[]
+                    data: action.payload as Article[] ?? []
                 }
             })
             .addCase(getArticlesThunk.rejected, (state, action) => {
                 return {
                     ...state,
-                    saving: false,
+                    errorMessage: action.error.message ?? "Something went wrong",
+                    isLoading: false,
                 }
             })
     }

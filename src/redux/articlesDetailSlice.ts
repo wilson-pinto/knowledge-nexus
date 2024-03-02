@@ -24,7 +24,13 @@ const initialState: ArticleDetailSliceType = {
 const articlesDetailSlice = createSlice({
     name: "articlesDetailSlice",
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        resetArticleDetails: (state) => {
+            return {
+                ...initialState
+            }
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(getArticleDetailThunk.pending, (state, action) => {
@@ -35,16 +41,19 @@ const articlesDetailSlice = createSlice({
                     ...initialState,
                     isLoading: false,
                     errorMessage: '',
-                    data:  action.payload as Article
+                    data: action.payload as Article
                 }
             })
             .addCase(getArticleDetailThunk.rejected, (state, action) => {
                 return {
                     ...state,
-                    saving: false,
+                    errorMessage: action.error.message ?? "Something went wrong",
+                    isLoading: false,
                 }
             })
     }
 })
+
+export const { resetArticleDetails } = articlesDetailSlice.actions
 
 export default articlesDetailSlice.reducer

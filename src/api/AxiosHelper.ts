@@ -16,9 +16,8 @@ const httpGet = ({ path, queryParams }: HttpGetParam) => {
             .then((res) => {
                 return resolve(res.data)
             })
-            .catch(e => {
-                console.log(e.message)
-                reject(e.message)
+            .catch(e => {               
+                reject( e?.response?.data?.message)
             }) //TODO : send formatted message
     })
 }

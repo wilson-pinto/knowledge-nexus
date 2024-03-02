@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import Article from '../../interfaces/Article';
-import AxiosHelper from '../../api/AxiosHelper';
 import { AppDispatch, RootState } from '../../redux/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { getArticleDetailThunk } from '../../redux/articlesDetailSlice';
+import { getArticleDetailThunk, resetArticleDetails } from '../../redux/articlesDetailSlice';
+import Shimmer from '../components/Shimmer';
+import ErrorComponent from '../components/ErrorComponent';
 
 const ArticleDetail = () => {
 
@@ -24,10 +24,23 @@ const ArticleDetail = () => {
         }
 
         dispatch(getArticleDetailThunk(id ?? ''))
+
+        return () => {
+            // clear current opened data on unmount
+            dispatch(resetArticleDetails())
+        }
     }, [])
 
     return (
         <div className='container py-5'>
+            {
+                isLoading
+                && (<div className="py-4" >
+                    <Shimmer className="mb-3" />
+                    <Shimmer className="mb-3" height='20px' width="100%" />
+                    <Shimmer width="100%" height='200px' />
+                </div>)
+            }
             {article && <>
                 <p className="display-5 text-dark mb-3">
                     {article.title}
@@ -39,6 +52,12 @@ const ArticleDetail = () => {
                     {article.fullText}
                 </p>
             </>}
+            {
+              (!isLoading && !errorMessage && !article) &&  <ErrorComponent>No data to display</ErrorComponent>
+            }
+            {
+                errorMessage && <ErrorComponent>{errorMessage}</ErrorComponent>
+            }
         </div>
     )
 }

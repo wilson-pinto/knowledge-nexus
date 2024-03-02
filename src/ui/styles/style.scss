@@ -7,3 +7,20 @@
 .notfound-wrapper{
     height: 100vh;
 }
+
+.shimmer {
+    height: 200px;
+    width: 100%;
+    background: linear-gradient(to right, #f6f6f6 8%, #f0f0f0 18%, #f6f6f6 33%);
+    animation: shimmerAnimation 1s infinite;
+    overflow: hidden;
+  }
+  
+  @keyframes shimmerAnimation {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: 200px 0;
+    }
+  }
