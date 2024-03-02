@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Article from '../../interfaces/Article';
 import AxiosHelper from '../../api/AxiosHelper';
+import { AppDispatch, RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { getArticleDetailThunk } from '../../redux/articlesDetailSlice';
 
 const ArticleDetail = () => {
 
@@ -10,17 +13,17 @@ const ArticleDetail = () => {
     let { id, slug } = useParams();
     const navigate = useNavigate();
 
-    const [article, setArticleDetail] = useState<Article>()
+
+    const dispatch: AppDispatch = useDispatch()
+
+    const { isLoading, data: article, errorMessage } = useSelector((state: RootState) => state.articleDetail)
 
     useEffect(() => {
         if (!id || !slug) {
             navigate('/not-found')
         }
 
-        AxiosHelper.httpGet({ path: `articles/${id} ` })
-            .then(res => {
-                setArticleDetail(res as Article)
-            }).catch(e => console.error(e))
+        dispatch(getArticleDetailThunk(id ?? ''))
     }, [])
 
     return (

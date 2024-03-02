@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react"
 import ArticleRow from "../components/ArticleRow"
-import AxiosHelper from "../../api/AxiosHelper"
-import Article from "../../interfaces/Article"
+import { AppDispatch, RootState } from "../../redux/store"
+import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
+import { getArticlesThunk } from "../../redux/articlesSlice"
 
 const ArticleList = () => {
 
-    const [articleList, setArticleList] = useState<Array<Article>>([])
+    const dispatch: AppDispatch = useDispatch()
+
+    const { isLoading, data: articleList, errorMessage } = useSelector((state: RootState) => state.articles)
 
     useEffect(()=>{
-        AxiosHelper.httpGet({path: 'articles'})
-        .then((res)=>{
-            setArticleList(res as Array<Article>)
-        }).catch(e=> console.log(e) )
+        dispatch(getArticlesThunk())
     }, [])
+
 
     return (
         <>
