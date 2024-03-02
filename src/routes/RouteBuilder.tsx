@@ -3,6 +3,7 @@ import ArticleList from "../pages/ArticleList";
 import ArticleDetail from "../pages/ArticleDetail";
 import { Navigate } from 'react-router-dom';
 import ArticleLayout from "../layout/ArticleLayout";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,7 @@ const router = createBrowserRouter([
             }
         ]
     },
+    { path: "*", element: <NotFound /> },
 
 ]);
 

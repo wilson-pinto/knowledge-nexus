@@ -1,7 +1,18 @@
+import { useEffect, useState } from "react"
 import ArticleRow from "../components/ArticleRow"
-import { articleList } from "../data/article-list"
+import AxiosHelper from "../api/AxiosHelper"
+import Article from "../interfaces/Article"
 
 const ArticleList = () => {
+
+    const [articleList, setArticleList] = useState<Array<Article>>([])
+
+    useEffect(()=>{
+        AxiosHelper.httpGet({path: 'articles'})
+        .then((res)=>{
+            setArticleList(res as Array<Article>)
+        }).catch(e=> console.log(e) )
+    }, [])
 
     return (
         <>

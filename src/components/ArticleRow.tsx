@@ -1,14 +1,19 @@
 import { articleSeq, toSlug } from "../utils/string-utils"
 import { useNavigate } from "react-router-dom";
+import Article from '../interfaces/Article'
 
-const ArticleRow = ({ article, seqNum }: any) => {
+type Props = {
+    article: Article
+    seqNum: number
+};
+
+const ArticleRow = ({ article, seqNum }: Props) => {
 
     const navigate = useNavigate();
 
     const onRowClick = () => {
         navigate(`/article/${article.id}/${toSlug(article.title)}`)
     }
-
     return (
         article && <div className="border-bottom border-light py-4 pointer" onClick={onRowClick}>
             <p className="fs-4 text-dark mb-1 fw-medium" >{articleSeq(seqNum)}</p>
@@ -19,6 +24,5 @@ const ArticleRow = ({ article, seqNum }: any) => {
 }
 
 export default ArticleRow
-
 
 
