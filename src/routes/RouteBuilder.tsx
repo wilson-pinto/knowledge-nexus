@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ArticleList from "../pages/ArticleList";
 import ArticleDetail from "../pages/ArticleDetail";
 import { Navigate } from 'react-router-dom';
+import ArticleLayout from "../layout/ArticleLayout";
 
 const router = createBrowserRouter([
     {
@@ -9,13 +10,19 @@ const router = createBrowserRouter([
         element: <Navigate to='/article' />, //Redirect to article
     },
     {
-        path: "/article", // mapping for article listing page
-        element: <ArticleList />,
+        element: <ArticleLayout />,
+        children: [
+            {
+                path: "/article",  // mapping for article listing page
+                element: <ArticleList />,
+            },
+            {
+                path: "/article/:id/:slug", // mapping for article detail page
+                element: <ArticleDetail />,
+            }
+        ]
     },
-    {
-        path: "article/:id/:slug", // mapping for article detail page
-        element: <ArticleDetail />,
-    },
+
 ]);
 
 export default router

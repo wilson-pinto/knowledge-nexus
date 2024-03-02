@@ -6,3 +6,12 @@ $font-family-serif: "Lora", serif;
 $display-font-family: $font-family-serif;
 
 $font-size-base: 0.8rem;
+
+$display-font-sizes: (
+  1: 6.5rem,
+  2: 5rem,
+  3: 4rem,
+  4: 2.5rem,
+  5: 2rem,
+  6: 1.5rem
+);
