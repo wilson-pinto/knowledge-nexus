@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import ArticleRow from "../components/ArticleRow"
-import AxiosHelper from "../api/AxiosHelper"
-import Article from "../interfaces/Article"
+import AxiosHelper from "../../api/AxiosHelper"
+import Article from "../../interfaces/Article"
 
 const ArticleList = () => {
 

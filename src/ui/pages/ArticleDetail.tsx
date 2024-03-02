@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import Article from '../interfaces/Article';
-import AxiosHelper from '../api/AxiosHelper';
+import Article from '../../interfaces/Article';
+import AxiosHelper from '../../api/AxiosHelper';
 
 const ArticleDetail = () => {
 

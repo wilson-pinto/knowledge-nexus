@@ -1,6 +1,6 @@
-import { articleSeq, toSlug } from "../utils/string-utils"
+import { articleSeq, toSlug } from "../../utils/string-utils"
 import { useNavigate } from "react-router-dom";
-import Article from '../interfaces/Article'
+import Article from '../../interfaces/Article'
 
 type Props = {
     article: Article
